@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	#container {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    background: yellow;
+	}
+	#animate {
+	    width: 50px;
+	    height: 50px;
+	    position: absolute;
+	    background: red;
+	}
+	#animate2 {
+	    width: 50px;
+	    height: 50px;
+	    position: absolute;
+	    right:0px;
+	    background: red;
+	}
+	.img_explose {
+	   padding-top: 100px;
+	}
+	</style>
+	<meta charset="utf-8">
+</head>
+<body>
+
+<h1>Test</h1>
+
+ <div id ="container">
+    <div id ="animate">Direction en bas a droite</div>
+    <div id ="animate2">Direction en bas a gauche</div>
+</div> 
+
+<p>
+	<input type="submit" onclick="explose()" value="Fait le bouger en bas a droite et a gauche">
+</p>
+
+
+<script>
+function explose() {
+	pos1 = document.getElementById("animate");
+	pos2 = document.getElementById("animate2");
+
+	function myMove() {
+	  var elem = document.getElementById("animate");  
+	  var pos = 0;
+	  var id = setInterval(frame, 5);
+	  function frame(pos1) {
+	    if (pos == 350) {
+	      clearInterval(id);
+	    } else {
+	      pos++; 
+	      elem.style.top = pos + 'px'; 
+	      elem.style.left = pos + 'px';
+	      pos1 = elem.style.top + elem.style.left;
+	      return pos1; 
+	    }
+	  }
+	}
+
+	function myMove2(pos2) {
+	  var elem = document.getElementById("animate2");  
+	  var pos = 0;
+	  var id = setInterval(frame2, 5);
+	  function frame2() {
+	    if (pos == 350) {
+	      clearInterval(id);
+	    } else {
+	      pos++; 
+	      elem.style.top = pos + 'px'; 
+	      elem.style.right = pos + 'px';
+	      pos2 = elem.style.top + elem.style.right;
+	      return pos2; 
+	    }
+	  }
+	}
+
+	myMove();
+	myMove2();
+
+	if (pos1 === pos2) {
+
+		document.getElementById('container').innerHTML += "<img src=\'img_explose.jpg\''>";
+	}
+
+}
+
+</script>
+</body>
+</html>
